@@ -4,8 +4,7 @@ public class PlayerTester {
 	public static void main(String[] args) {
         int money = 8000;
         Scanner input = new Scanner(System.in);
-        System.out.println("In your apartment, you have just finished designing your first prototype of you revolutionary invention.
-        Wait, what was its name again?");
+        System.out.println("In your apartment, you have just finished designing your first prototype of you revolutionary invention. Wait, what was its name again?");
         String name = input.nextLine();
         while(money>0){
             System.out.println("I have $"+ money + ", what should I do?");
