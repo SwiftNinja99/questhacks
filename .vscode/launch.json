@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - NewJava",
+            "request": "launch",
+            "mainClass": "NewJava"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - PlayerTester",
             "request": "launch",
             "mainClass": "PlayerTester"
