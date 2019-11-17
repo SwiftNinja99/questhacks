@@ -1,16 +1,56 @@
+import processing.core.PApplet;
+import processing.core.PImage;
 import java.util.Scanner;
 import java.util.Random;
-public class NewJava {
+
+public class buisnessSim extends PApplet {
+
+    public PImage imgApartment;
+    public PImage leftHand;
+    public PImage rightHand;
+    public PImage withPhone;
+    public PImage Office;
+    public PImage winScreen;
+    public PImage loseScreen;
+    int timer = 0;
+    boolean patented = false;
+    boolean fundraised = false;
+    int money = 8000;
 
     public static void main(String[] args) {
-        boolean patented = false;
-        boolean fundraised = false;
-        int money = 8000;
-        Random rand = new Random();
-        Scanner input = new Scanner(System.in);
-        System.out.println("In your apartment, you have just finished designing your first prototype of you revolutionary invention. Wait, what was its name again?");
-        String name = input.nextLine();
+        PApplet.main("buisnessSim");
+
+    }
+
+
+    public void settings() {
+        size(600, 400);
+    }
+
+    public void setup() {
+        imgApartment = loadImage("./img/apartmentPhone.png");
+        imgApartment.resize(600, 400);
+        Office = loadImage("./img/Office.png");
+        Office.resize(600,400);
+        leftHand = loadImage("./img/leftHand.png");
+        leftHand.resize(120, 120);
+        rightHand = loadImage("./img/rightHand.png");
+        rightHand.resize(120, 120);
+        withPhone = loadImage("./img/withPhone.png");
+        withPhone.resize(120, 120);
+        winScreen = loadImage("./img/victory screen.png");
+        winScreen.resize(600,400);
+        background(imgApartment);
+        loseScreen = loadImage("./img/lose screen.png");
+        loseScreen.resize(600,400);
+        animationNoPhone();
+    }
+
+    public void draw(){
         while(money>0 && money<1000000){
+            Scanner input = new Scanner(System.in);
+            Random rand = new Random();
+
             System.out.println("You have $"+ money + ", what should I do?");
             System.out.println("Should you:\n1) Hire someone for manufacturing($3000)");
             if(fundraised == false){
@@ -68,13 +108,13 @@ public class NewJava {
                         money+=1000000;
                     }
                     else{
-                        System.out.println("You lost the lawsuit since you never patented your product.");
+                        System.out.println("HUAWEI did what you did and your company starts losing money. You cant continue your buisness.");
                     }
                 }
             }
             else if(option == 1){
                 money-=3000;
-                System.out.println("You now have a large inventory. You sold " + approval + "% of the stock.");
+                System.out.println("You now have a large inventory. You sold " + approval + "% of the items.");
                 if(approval>94){
                     money +=100000;
                 }
@@ -91,13 +131,17 @@ public class NewJava {
                     System.out.println("Would you like to buy a house for $10000?(1 for yes)");
                     if(input.nextInt() == 1){
                         money-=10000;
-                        // UPGRADE HOUSE HERE
+                        background(Office);
+
+
                     }
                 }
             }
             else{
                 System.out.println("You never tested your product! No one knows what it is, so nobody buys it.");
                 money = 0;
+                break;
+
             }
             int buyNum = rand.nextInt(2);
             String buyer = "Sooubway";
@@ -109,7 +153,7 @@ public class NewJava {
             else if(buyNum == 2){
                 buyer = "Safety Way";
                 price = 900000;
-                
+
             }
             System.out.println("You have been approached by a company that wants to aquire your company named "+buyer);
             System.out.println("They are offering "+price+" for your company.");
@@ -123,9 +167,46 @@ public class NewJava {
         }
         if(money<1){
             System.out.println("You didn't make it to a million dollars, and your product failed, so you went bankrupt!");
+            background(loseScreen);
         }
         else if(money>=1000000){
             System.out.println("You're a millionare! Congratulations!");
+            background(winScreen);
         }
     }
+
+    public void animationNoPhone() {
+        if (timer == 30) {
+            timer = 1;
+        }
+        else {
+            timer++;
+
+        }
+        if (timer <= 5) {
+            image(leftHand, 480, 150);
+        }
+        else if (timer <= 10) {
+            image(rightHand, 480, 150);
+        }
+        else if (timer <= 15) {
+            image(leftHand, 480, 150);
+        }
+        else if (timer <= 20) {
+            image(rightHand, 480, 150);
+        }
+        else if (timer <= 25) {
+            image(leftHand, 480, 150);
+        }
+        else if (timer <= 30) {
+            image(rightHand, 480, 150);
+        }
+
+
+    }
+
+
+
+
+
 }
